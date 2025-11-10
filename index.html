@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="B2B Mobile Marketplace App with WhatsApp Integration - React Native, Node.js">
+    <title>B2B Mobile Marketplace - Portfolio Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .screenshot-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .screenshot-item h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .screenshot-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Tech Details Section */
+        .tech-details {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .tech-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .tech-column h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .tech-column ul {
+            list-style: none;
+        }
+
+        .tech-column ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .tech-column ul li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* Results Section */
+        .results {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .result-item h3 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .result-item p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>B2B Mobile Marketplace App</h1>
+            <p>Full-stack mobile application with WhatsApp Business API integration</p>
+            <p>React Native • Node.js • PostgreSQL • Real-time Communication</p>
+
+            <div class="tech-stack">
+                <span class="tech-badge">📱 React Native</span>
+                <span class="tech-badge">⚡ Node.js</span>
+                <span class="tech-badge">🗄️ PostgreSQL</span>
+                <span class="tech-badge">💬 WhatsApp API</span>
+                <span class="tech-badge">🤖 AI Chatbot</span>
+                <span class="tech-badge">🔔 Push Notifications</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Cross-Platform Mobile App</h3>
+                    <p>Native iOS and Android applications built with React Native, ensuring smooth performance and native user experience on both platforms.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>WhatsApp Integration</h3>
+                    <p>Direct WhatsApp Business API integration allowing businesses to send offers and communicate with customers instantly through their preferred messaging platform.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-time Offers</h3>
+                    <p>Live offer management system where businesses can create, send, and track offers in real-time. Customers receive instant notifications with full offer details.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Chatbot</h3>
+                    <p>Intelligent chatbot handles customer inquiries, provides product information, and assists with order processing 24/7, improving response times and customer satisfaction.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Admin Dashboard</h3>
+                    <p>Comprehensive web-based admin panel for managing products, customers, offers, and viewing analytics. Track performance metrics and customer engagement in real-time.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Scalable</h3>
+                    <p>Built with security best practices, JWT authentication, encrypted data transmission, and scalable architecture ready for growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots">
+        <div class="container">
+            <h2 class="section-title">App Screenshots</h2>
+
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="images/screenshot-1-offers.png" alt="Offers Screen" onerror="this.style.display='none'">
+                    <h4>Offers Management</h4>
+                    <p>Browse and manage active offers with discount badges, expiry dates, and quick actions</p>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="images/screenshot-2-whatsapp-preview.png" alt="WhatsApp Preview Modal">
+                    <h4>WhatsApp Message Preview</h4>
+                    <p>Interactive modal showing exactly what WhatsApp message will be sent to customers - with personalized greeting, product details, EUR pricing, and applied discounts</p>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="images/screenshot-3-preview.png" alt="WhatsApp Preview" onerror="this.style.display='none'">
+                    <h4>WhatsApp Preview</h4>
+                    <p>See exactly what message will be sent to customers before accepting offers</p>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="images/screenshot-4-admin.png" alt="Admin Panel" onerror="this.style.display='none'">
+                    <h4>Admin Dashboard</h4>
+                    <p>Manage products, customers, and view analytics from web-based admin panel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Details Section -->
+    <section class="tech-details">
+        <div class="container">
+            <h2 class="section-title">Technical Stack</h2>
+
+            <div class="tech-columns">
+                <div class="tech-column">
+                    <h3>Frontend Mobile</h3>
+                    <ul>
+                        <li>React Native (Cross-platform)</li>
+                        <li>React Navigation</li>
+                        <li>React Hooks & Context</li>
+                        <li>Axios for API calls</li>
+                        <li>AsyncStorage</li>
+                        <li>React Native Vector Icons</li>
+                        <li>Push Notifications</li>
+                    </ul>
+                </div>
+
+                <div class="tech-column">
+                    <h3>Backend & APIs</h3>
+                    <ul>
+                        <li>Node.js & Express.js</li>
+                        <li>RESTful API architecture</li>
+                        <li>JWT Authentication</li>
+                        <li>WhatsApp Business API</li>
+                        <li>Real-time WebSockets</li>
+                        <li>Input validation & sanitization</li>
+                        <li>Error handling middleware</li>
+                    </ul>
+                </div>
+
+                <div class="tech-column">
+                    <h3>Database & Infrastructure</h3>
+                    <ul>
+                        <li>PostgreSQL database</li>
+                        <li>Sequelize ORM</li>
+                        <li>Redis caching</li>
+                        <li>Cloud hosting (AWS/Azure)</li>
+                        <li>Docker containerization</li>
+                        <li>CI/CD pipeline</li>
+                        <li>Backup & monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="tech-column">
+                    <h3>Features & Integrations</h3>
+                    <ul>
+                        <li>WhatsApp Business integration</li>
+                        <li>AI Chatbot (NLP)</li>
+                        <li>Multi-language support</li>
+                        <li>Currency formatting (EUR)</li>
+                        <li>Discount calculations</li>
+                        <li>Real-time notifications</li>
+                        <li>Analytics & reporting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results">
+        <div class="container">
+            <h2 class="section-title">Project Results</h2>
+
+            <div class="results-grid">
+                <div class="result-item">
+                    <h3>60%</h3>
+                    <p>Faster order processing time</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>3x</h3>
+                    <p>Higher customer engagement</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>98%</h3>
+                    <p>WhatsApp message open rate</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>4 weeks</h3>
+                    <p>Development timeline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Interested in Similar Solution?</h2>
+            <p>I can build custom B2B mobile applications tailored to your business needs</p>
+            <a href="mailto:your-email@example.com" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Full-Stack Developer Portfolio. All rights reserved.</p>
+            <p>React Native • Node.js • Mobile App Development</p>
+        </div>
+    </footer>
+</body>
+</html>
